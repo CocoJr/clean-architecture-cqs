@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Clean Architecture - CQS</h1>
+        {% if app.user %}
+            <a href="{{ path('user_me') }}">Me</a>&nbsp;<a href="{{ path('user_logout') }}">Logout</a>
+        {% else %}
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                Register
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Login
+            </button>
+            {% include 'home/register.modal.html.twig' %}
+            {% include 'home/login.modal.html.twig' %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% if form == 'register' %}
+        <script type="application/javascript">
+            {% if form == 'register' %}
+                window.addEventListener('DOMContentLoaded', () => {
+                    const myModal = new bootstrap.Modal('#registerModal', {
+                        keyboard: false
+                    })
+                    myModal.show();
+                });
+            {% elseif form == 'login' %}
+                window.addEventListener('DOMContentLoaded', () => {
+                    const myModal = new bootstrap.Modal('#loginModal', {
+                        keyboard: false
+                    })
+                    myModal.show();
+                });
+            {% endif %}
+        </script>
+    {% endif %}
+{% endblock %}

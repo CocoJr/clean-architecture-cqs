@@ -1,0 +1,21 @@
+services:
+  Domain\User\UseCase\Login\LoginUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Domain\User\UseCase\Login\LoginUserRequest
+        from_transport: sync
+
+  Domain\User\UseCase\Logout\LogoutUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Domain\User\UseCase\Logout\LogoutUserRequest
+        from_transport: sync
+
+  Domain\User\UseCase\Register\RegisterUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Domain\User\UseCase\Register\RegisterUserRequest
+        from_transport: sync

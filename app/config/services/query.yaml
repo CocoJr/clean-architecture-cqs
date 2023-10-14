@@ -1,0 +1,7 @@
+services:
+  Application\Query\User\GetByEmail\GetUserByEmail:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Domain\User\Query\GetByEmail\GetUserByEmailRequest
+        from_transport: sync

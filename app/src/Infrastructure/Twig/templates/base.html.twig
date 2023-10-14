@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {{ encore_entry_link_tags('appcss') }}
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block nav %}{% endblock %}
+        <div class="container mt-3">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% block body %}{% endblock %}
+
+        {{ encore_entry_script_tags('appjs') }}
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

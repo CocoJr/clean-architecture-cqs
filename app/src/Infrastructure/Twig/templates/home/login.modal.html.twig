@@ -1,0 +1,36 @@
+<div class="modal" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="{{ path('user_login') }}">
+                        <div class="mb-3">
+                            <label for="form_login_email" class="form-label">Email</label>
+                            <input type="email" name="email" id="form_login_email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="form_login_password" class="form-label">Password</label>
+                            <input type="password" name="password" id="form_login_password" class="form-control">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container mt-2 text-center">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        Doesn't have an account yet? Register now!
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
