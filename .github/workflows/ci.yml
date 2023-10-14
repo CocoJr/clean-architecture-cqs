@@ -1,0 +1,47 @@
+name: CI
+
+on: [push]
+
+env:
+  # DATABASE
+  APP_ENV: test
+  DATABASE_URL: mysql://root:rootpasswd@127.0.0.1:3306/clean-archi-cqs
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: "clean-archi-cqs"
+          mysql version: "8.0"
+          mysql root password: "rootpasswd"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+      - uses: actions/checkout@v3
+      - name: Init application
+        working-directory: ./app
+        run: make init
+      - name: Test architecture
+        working-directory: ./app
+        run: php deptrac.phar --fail-on-uncovered
+      - name: Test code style
+        working-directory: ./app
+        run: vendor/bin/php-cs-fixer check
+      - name: Analyze code
+        working-directory: ./app
+        run: vendor/bin/phpstan
+      - name: Test application
+        working-directory: ./app
+        run: make init-test && vendor/bin/phpunit --coverage-cobertura $HOME/coverage.xml
+      - name: Test coverage
+        run: |
+          minCodeCoverage=80;
+          currentCodeCoverage=$(grep -Po 'coverage line-rate=\"([0-9.]+)\"' $HOME/coverage.xml | grep -Po '([0-9.]+)');
+          if (( $(echo "$currentCodeCoverage < 0.$minCodeCoverage" | bc -l) )); then
+            echo "Code coverage is under $minCodeCoverage% (current: $currentCodeCoverage%)"; 
+            exit 1;
+          fi;

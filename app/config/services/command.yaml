@@ -1,0 +1,7 @@
+services:
+  Application\Command\User\Create\CreateUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Application\Command\User\Create\CreateUserRequest
+        from_transport: sync

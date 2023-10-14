@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity
+            name="Domain\User\Model\User"
+            repository-class="Infrastructure\Doctrine\Repository\UserRepository"
+            table="users"
+    >
+        <indexes>
+            <index columns="email"/>
+            <index columns="username"/>
+        </indexes>
+        <unique-constraints>
+            <unique-constraint columns="email" name="user_email_unique_idx" />
+        </unique-constraints>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="username" column="username" length="32" type="username_type"/>
+        <field name="email" column="email" length="180" type="email_type"/>
+        <field name="password" column="password" length="255"/>
+        <field name="roles" column="roles" type="array" length="255"/>
+    </entity>
+</doctrine-mapping>

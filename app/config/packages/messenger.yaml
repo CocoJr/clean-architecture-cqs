@@ -1,0 +1,8 @@
+framework:
+    messenger:
+        failure_transport: failed
+
+        transports:
+            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            sync: 'sync://'
+            failed: 'doctrine://default?queue_name=failed'

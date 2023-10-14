@@ -1,0 +1,28 @@
+services:
+  Application\UseCase\User\GetLogged\GetLoggedUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Application\UseCase\User\GetLogged\GetLoggedUserRequest
+        from_transport: sync
+
+  Application\UseCase\User\Login\LoginUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Application\UseCase\User\Login\LoginUserRequest
+        from_transport: sync
+
+  Application\UseCase\User\Logout\LogoutUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Application\UseCase\User\Logout\LogoutUserRequest
+        from_transport: sync
+
+  Application\UseCase\User\Register\RegisterUser:
+    autowire: true
+    tags:
+      - name: messenger.message_handler
+        handles: Application\UseCase\User\Register\RegisterUserRequest
+        from_transport: sync

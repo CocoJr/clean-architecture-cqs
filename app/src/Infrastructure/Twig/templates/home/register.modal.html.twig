@@ -1,0 +1,48 @@
+<div class="modal" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="{{ path('user_register') }}">
+                        <div class="mb-3">
+                            <label for="form_login_username" class="form-label">Username</label>
+                            <input type="text" name="username" id="form_login_username" class="form-control">
+                            {% if form_errors['username']|default(null) %}
+                                <div class="text-danger">{{ form_errors['username'] }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="form_login_email" class="form-label">Email</label>
+                            <input type="email" name="email" id="form_login_email" class="form-control">
+                            {% if form_errors['email']|default(null) %}
+                                    <div class="text-danger">{{ form_errors['email'] }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="form_login_password" class="form-label">Password</label>
+                            <input type="password" name="password" id="form_login_password" class="form-control">
+                            {% if form_errors['password']|default(null) %}
+                                <div class="text-danger">{{ form_errors['password'] }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container mt-2 text-center">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Already have an account? Login!
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
